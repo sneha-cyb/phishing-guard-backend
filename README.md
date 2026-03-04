@@ -31,7 +31,7 @@ Google Safe Browsing API
 
 Running the Backend
 
-Navigate to the backend directory.
+Navigate to the project directory.
 
 cd phishing-guard-backend
 
@@ -39,19 +39,33 @@ Install dependencies.
 
 npm install
 
-Start the server.
+Start the backend server.
 
-node server.js
+npm run dev
 
-The phishing detection API will start running on:
+The API will start running on:
 
 http://localhost:3000
-Testing the Server
+Checking Server Health
 
-Open another browser tab and check the server.
+Open another terminal and run:
+
+curl http://localhost:3000/health
+
+Expected response:
+
+status: ok
+
+This confirms that the PhishGuard API is running successfully.
+
+Scanning a URL
+
+You can test the phishing detection API using a POST request.
 
 Example:
 
-http://localhost:3000
+curl -X POST http://localhost:3000/api/scan \
+-H "Content-Type: application/json" \
+-d '{"url":"https://example.com"}'
 
-Provide a malicious or suspicious URL to the API endpoint, and the backend will analyze the link using Google Safe Browsing and return the security result.
+The backend will analyze the URL using Google Safe Browsing and return the security result.
